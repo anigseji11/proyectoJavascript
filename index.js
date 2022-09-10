@@ -1,11 +1,8 @@
 
-let nombre = prompt('Indique su nombre y apellido')
-let banco = parseInt(prompt('Seleccione un banco \n1- Banco Estado \n2- Banco de Chile\n3- Banco Santander'))
+
 let bancoNombre = ''
 let tasa = 0
-let montoCredito = parseInt(prompt('Indique el monto del credito hipotecario'))
-let anios = parseInt(prompt('Indique la cantidad de años para el pagov del credito'))
-
+let mensaje = 'ELIJA EL BANCO CON EL QUE DESEA COTIZAR: \n';
 let Datos = []
 
 class Banco{
@@ -15,9 +12,23 @@ class Banco{
     }
 }
 
+let Bancos = []
+
 const bancobci = new Banco("Banco BCI",0.35)
-const bancoEstado= new Banco("Banco Estado",0.45)
-const bancoSantander= new Banco("Banco Santander",0.55)
+Bancos.push(bancobci)
+const bancoEstado= new Banco("Banco Estado", 0.43)
+Bancos.push(bancoEstado)
+const bancoSantander= new Banco("Banco Santander", 0.55)
+Bancos.push(bancoSantander)
+
+for (let i = 0; i < Bancos.length; i++) {
+    mensaje = mensaje.concat(i + 1, "- ", Bancos[i].nombre, "\n")
+}
+
+let nombre = prompt('Indique su nombre y apellido')
+let banco = parseInt(prompt(mensaje))
+let montoCredito = parseInt(prompt('Indique el monto del credito hipotecario'))
+let anios = parseInt(prompt('Indique la cantidad de años para el pago del credito'))
 
 
 
@@ -32,39 +43,45 @@ const bancoSantander= new Banco("Banco Santander",0.55)
        bancoNombre = bancoSantander.nombre
        tasa = bancoSantander.tasa = 'Banco Santander'
     }else{
-        banco = parseInt(prompt('Debe elegir un banco valido. \n1- Banco Estado \n2-Banco de Chile\n2-Banco Santander'))
+       banco = prompt(mensaje)
     }
+
     Datos.push(nombre)
     Datos.push(bancoNombre)
+    Datos.push(montoCredito)
     Datos.push(tasa)
+
+    Datos.push(montoConInteres(montoCredito, tasa))
+    Datos.push(montoCuota(montoConInteres))
 
 
    
 
-    function montoConInteres (montoCredito, tasa){
+    function montoConInteres(montoCredito, tasa){
         return montoCreditoTotal = montoCredito + (montoCredito * tasa)
     }
 
+    function montoCuota(montoConInteres){
+        return cuota = montoCreditoTotal / (anios * 12)
+    }
 
-Datos.push(montoCredito)
-Datos.push(montoConInteres(montoCredito, tasa))
+
 
 console.log(Datos)
-let mensaje = ""
-
-for (let i= 0 ; i < Datos.length; i++ ) {
- 
-     mensaje += mensaje && "-" && Datos[i] && "\n";
-        
-    
-}
 
 
-alert(mensaje)
+alert('Estimado ' + Datos[0] + ' se envio su cotizacion con los siguientes datos: \n' +
+'Banco: ' + Datos[1] + '\n' +
+'Monto Credito: ' + Datos[2] + '\n' +
+'Tasa: ' + Datos[3] + '\n' +
+'Monto Total Credito: ' + Datos[4] + '\n' +
+'Cantidad Cuotas: ' + anios * 12 + '\n' +
+'Monto Cuota: ' + Datos[5] + '\n')
 
 
 
-alert('Estimado ' + nombre + ' estos son los datos de la simulacion de su credito: \n' + datos)
+
+
 
 
 
