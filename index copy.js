@@ -54,47 +54,11 @@ function Cambio(e) {
 var columnas = ['#', 'Descripcion']
 var filas = ['Nombre', 'Fecha', 'Monto', 'Banco', 'Tasa', 'Años']
 
-
-
-
-
-
-
-
 function presionar(e) {
     e.preventDefault()
 
-    Swal.fire({
-        title: '<strong>Datos de Simulacion</u></strong>',
-        icon: 'success',
-        html:
-        '<div class="card">' +
-        '<div class="card-header"></div>'+
-        '<div class="card-body">'+
-          '<table class="table">'+
-            '<thead>'+
-              '<tr id="amortizaciones2">'+
-    
-              '</tr>'+
-            '</thead>'+
-    
-            '<tbody id="tbody2">'+
-    
-            '</tbody>'+
-          '</table>'+
-        '</div>'+
-      '</div>',
-        showCloseButton: true,
-        showCancelButton: false,
-        focusConfirm: false,
-        confirmButtonText:
-          '<i class="fa fa-thumbs-up"></i> Great!',
-        confirmButtonAriaLabel: 'Enviar simulacion!',
-      })
-      
-
-    var amortizaciones2 = document.getElementById('amortizaciones2')
-    var cuerpo = document.getElementById('tbody2')
+    var amortizaciones = document.getElementById('amortizaciones')
+    var cuerpo = document.getElementById('tbody')
     //var cuerpoTabla = document.createElement('tbody')
     var pieTabla = document.createElement('tfoot')
     var fila = document.createElement('tr')
@@ -103,7 +67,7 @@ function presionar(e) {
         let celda = document.createElement('th')
         celda.setAttribute('scope', "col")
         celda.innerText = columnas[i]
-        amortizaciones2.append(celda)
+        amortizaciones.append(celda)
     }
 
     for (let j = 0; j < filas.length; j++) {
@@ -160,6 +124,23 @@ function presionar(e) {
 
 
 
+
+
+
+
+
+
+    Datos.push(nombre)
+    Datos.push(bancoNombre)
+    Datos.push(montoCredito)
+    Datos.push(tasa)
+
+    Datos.push(montoConInteres(montoCredito, tasa))
+    Datos.push(montoCuota(montoConInteres))
+
+
+
+
     function montoConInteres(montoCredito, tasa) {
         return montoCreditoTotal = montoCredito + (montoCredito * tasa)
     }
@@ -170,8 +151,11 @@ function presionar(e) {
 
 
 
+    console.log(Datos)
 
-    
+
+
+
 
 
 
