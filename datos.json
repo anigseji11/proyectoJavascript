@@ -1,0 +1,20 @@
+{
+    "datos": [
+        {
+            "nombre": "Banco BCI",
+            "tasa": 0.35
+        },
+        {
+            "nombre": "Banco Estado",
+            "tasa": 0.40
+        },
+        {
+            "nombre": "Banco Santander",
+            "tasa": 0.55
+        },
+        {
+            "nombre": "Banco de Chile",
+            "tasa": 0.15
+        }
+    ]
+}

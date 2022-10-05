@@ -27,22 +27,24 @@ class Banco {
     }
 }
 
-let Bancos = []
+let datos = fetch("./datos.json")
+    .then(response => response.json())
+    .then(info => {
+        const bancos = info.datos
 
-const bancobci = new Banco("Banco BCI", 0.35)
-Bancos.push(bancobci)
-const bancoEstado = new Banco("Banco Estado", 0.43)
-Bancos.push(bancoEstado)
-const bancoSantander = new Banco("Banco Santander", 0.55)
-Bancos.push(bancoSantander)
+        bancos.forEach(banco => {
+
+            const option = document.createElement("option")
+            option.innerText = `${banco.nombre}`
+            option.setAttribute('value', `${banco.tasa}`)
+            selectTag.append(option)
+
+        });
 
 
-Bancos.forEach((banco) => {
-    const option = document.createElement("option")
-    option.innerText = `${banco.nombre}`
-    option.setAttribute('value', `${banco.tasa}`)
-    selectTag.append(option)
-});
+
+
+    })
 
 function Cambio(e) {
     bancoNombre = e.target.selectedOptions[0].innerText
@@ -68,30 +70,30 @@ function presionar(e) {
         title: '<strong>Datos de Simulacion</u></strong>',
         icon: 'success',
         html:
-        '<div class="card">' +
-        '<div class="card-header"></div>'+
-        '<div class="card-body">'+
-          '<table class="table">'+
-            '<thead>'+
-              '<tr id="amortizaciones2">'+
-    
-              '</tr>'+
-            '</thead>'+
-    
-            '<tbody id="tbody2">'+
-    
-            '</tbody>'+
-          '</table>'+
-        '</div>'+
-      '</div>',
+            '<div class="card">' +
+            '<div class="card-header"></div>' +
+            '<div class="card-body">' +
+            '<table class="table">' +
+            '<thead>' +
+            '<tr id="amortizaciones2">' +
+
+            '</tr>' +
+            '</thead>' +
+
+            '<tbody id="tbody2">' +
+
+            '</tbody>' +
+            '</table>' +
+            '</div>' +
+            '</div>',
         showCloseButton: true,
         showCancelButton: false,
         focusConfirm: false,
         confirmButtonText:
-          '<i class="fa fa-thumbs-up"></i> Great!',
+            '<i class="fa fa-thumbs-up"></i> Great!',
         confirmButtonAriaLabel: 'Enviar simulacion!',
-      })
-      
+    })
+
 
     var amortizaciones2 = document.getElementById('amortizaciones2')
     var cuerpo = document.getElementById('tbody2')
@@ -116,7 +118,7 @@ function presionar(e) {
         celda.innerText = filas[j]
         fila.append(celda)
 
-       
+
         switch (filas[j]) {
             case 'Nombre':
                 let contenido = document.createElement('td')
@@ -135,20 +137,20 @@ function presionar(e) {
                 fila.append(contenido3)
                 break
             case 'Banco':
-                    let contenido4 = document.createElement('td')
-                    contenido4.innerText = bancoNombre
-                    fila.append(contenido4)
-                    break
+                let contenido4 = document.createElement('td')
+                contenido4.innerText = bancoNombre
+                fila.append(contenido4)
+                break
             case 'Tasa':
-                        let contenido5 = document.createElement('td')
-                        contenido5.innerText = tasa
-                        fila.append(contenido5)
-                        break
-                        case 'Años':
-                        let contenido6 = document.createElement('td')
-                        contenido6.innerText = anios.value
-                        fila.append(contenido6)
-                        break
+                let contenido5 = document.createElement('td')
+                contenido5.innerText = tasa
+                fila.append(contenido5)
+                break
+            case 'Años':
+                let contenido6 = document.createElement('td')
+                contenido6.innerText = anios.value
+                fila.append(contenido6)
+                break
 
         }
 
@@ -171,7 +173,7 @@ function presionar(e) {
 
 
 
-    
+
 
 
 
